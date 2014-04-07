@@ -23,4 +23,5 @@ public class NKGPDetailResult extends NKGPResult{
 		// TODO Auto-generated constructor stub
 	}
 
+	
 }
