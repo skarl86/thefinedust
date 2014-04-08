@@ -1,0 +1,1 @@
+Google Place API 중 쿼리 방법에 따라 Connector 를 나눔.

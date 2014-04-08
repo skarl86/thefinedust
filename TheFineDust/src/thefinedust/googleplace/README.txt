@@ -1,0 +1,1 @@
+Google Place API 를 인터페이싱 해줄 클래스를 만드는 곳. 
