@@ -26,100 +26,28 @@ import thefinedust.util.TFDUtil;
 
 /**
  * 
- * @Class		: NKGooglePlaces
- * @Date 		: 2014. 4. 7.
- * @Author 		: NCri
+ * @Class : NKGooglePlaces
+ * @Date : 2014. 4. 7.
+ * @Author : NCri
  */
-public class NKGPConnector {
-	private static String _API_KEY = "AIzaSyCJQXicui49gzhAwbGWGmm3OJEpKPjUeJE";
+public abstract class NKGPConnector {
+	protected static String _API_KEY = "AIzaSyCJQXicui49gzhAwbGWGmm3OJEpKPjUeJE";
+	protected static String _BASE_URL = "https://maps.googleapis.com/maps/api/place/";
+	protected static String _RESULT = "results";
+
+	protected String _function = null;
+	protected URL _apiUrl = null;
 	
-	private static String _NEXT_PAGE_TOKEN = 	"next_page_token";
-	private static String _RESULT = 			"results";
+	protected URLConnection _urlConnection = null;
+	protected BufferedReader _jsonData = null;
+	protected String _returnDataType = null;
 	
-	private URL _apiUrl = null;
-	private URLConnection _urlConnection = null;
-	private BufferedReader _jsonData = null;
-	private String _returnDataType = null;
-
-	public NKGPConnector(String keyword) {
-		this(keyword, null);
-	}
-
 	/**
-	 * 
-	 * @param keyword
-	 * @param type
-	 */
-	public NKGPConnector(String keyword, String type) {		
-		// Type이 없으면 json 형태로.
-		_returnDataType = type == null ? "json" : type;
-		
-		// 공백 처리해줘야됨.
-		keyword = TFDUtil.string2url(keyword);
-
-		try {
-			// GooglePlace API 호출 주소를 초기화.
-			_apiUrl = new URL(
-					"https://maps.googleapis.com/maps/api/place/textsearch/"
-							+ _returnDataType + "?query=" + keyword
-							+ "&sensor=true&language=ko&key=" + _API_KEY);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	/**
-	 * 
-	 * @Method Name	: connection
-	 * @date   		: 2014. 4. 7. 
+	 * @method Name	: connection
+	 * @date   		: 2014. 4. 8. 
 	 * @author   	: NCri
-	 * @Method desc :
+	 * @description :
 	 */
-	public void connection() {
-		try {
-			_urlConnection = _apiUrl.openConnection();
-			_urlConnection.connect();
-
-			// GooglePlace API Query에서 전달받은
-			// JSON데이터를 맴버에 저장.
-			_jsonData = new BufferedReader(new InputStreamReader(
-					_urlConnection.getInputStream()));
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	// TEST METHOD
-	public void print() throws IOException {
-		JSONParser jsonParser = new JSONParser();
-		try {
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(_jsonData);
-			JSONArray array = (JSONArray) jsonObject.get(_RESULT);
-			Iterator i = array.iterator();
-			while(i.hasNext()){
-				JSONObject obj = (JSONObject)i.next();
-				System.out.println(obj);
-				NKGPResult gp = new NKGPResult(obj);
-				System.out.println(gp);
-				gp.getGeometry();
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void main(String[] args) {
-		NKGPConnector gp = new NKGPConnector("홍대 식당");
-		gp.connection();
-		try {
-			gp.print();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
+	public abstract void connection();
+	
 }

@@ -12,5 +12,8 @@ package thefinedust.googleplace;
  * @Author 		: NCri
  */
 public class NKGPPhotoRef {
-
+	private String _reference;
+	public NKGPPhotoRef(String ref){
+		_reference = ref;		
+	}
 }
