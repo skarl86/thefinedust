@@ -26,7 +26,7 @@ public class NKGPResult extends TFDPlace {
 	public final static String NAME = "name";
 	public final static String OPENING = "opening_hours";
 	public final static String PHOTOS = "photos";
-	public final static String REFERENCE = "REFERENCE";
+	public final static String REFERENCE = "reference";
 	public final static String TYPES = "types";
 
 	// JSON Parsing 데이터의 클래스가 명확하지 않기때문에
@@ -119,6 +119,42 @@ public class NKGPResult extends TFDPlace {
 	 */
 	public Object getReference() {
 		return _reference;
+	}
+
+	/* (non-Javadoc)
+	 * @see thefinedust.TFDPlace#getAddress()
+	 */
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see thefinedust.TFDPlace#getName()
+	 */
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see thefinedust.TFDPlace#getTell()
+	 */
+	@Override
+	public String getTell() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see thefinedust.TFDPlace#getTypes()
+	 */
+	@Override
+	public Object getTypes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

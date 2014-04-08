@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Iterator;
 
 import org.json.simple.JSONArray;
@@ -48,11 +47,9 @@ public class NKGPResultConnector extends NKGPConnector {
 	public void connection() {
 		try {
 			// GooglePlace API 호출 주소를 초기화.
-			_apiUrl = new URL(_BASE_URL + _function + "/" + _returnDataType
+			this._connection(_BASE_URL + _function + "/" + _returnDataType
 					+ "?query=" + _keyword + "&sensor=true&language=ko&key="
 					+ _API_KEY);
-			_urlConnection = _apiUrl.openConnection();
-			_urlConnection.connect();
 
 			// GooglePlace API Query에서 전달받은
 			// JSON데이터를 맴버에 저장.
