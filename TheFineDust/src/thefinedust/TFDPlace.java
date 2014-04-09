@@ -10,7 +10,7 @@ abstract public class TFDPlace {
 	protected Object _address = null;
 	protected Object _geometry = null;
 	protected Object _name = null;
-	protected Object _tell = null;
+	protected Object _tel = null;
 	protected Object _types = null;
 	
 	abstract public String getAddress();
